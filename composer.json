@@ -1,0 +1,59 @@
+{
+  "name": "othyn/laravel-notes",
+  "description": "Assign notes to any model entity with ease.",
+  "keywords": [
+    "othyn",
+    "laravel-notes"
+  ],
+  "homepage": "https://github.com/othyn/laravel-notes",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ben",
+      "email": "git@othyn.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "friendsofphp/php-cs-fixer": "^3.13",
+    "illuminate/support": "^9.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^7.18",
+    "pestphp/pest": "^1.22",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Othyn\\LaravelNotes\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Othyn\\LaravelNotes\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "./vendor/bin/pest",
+    "test-coverage": "XDEBUG_MODE=coverage ./vendor/bin/pest --coverage --min=100",
+    "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --allow-risky yes --config ./.php-cs-fixer.dist.php"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Othyn\\LaravelNotes\\LaravelNotesServiceProvider"
+      ],
+      "aliases": {
+        "LaravelNotes": "Othyn\\LaravelNotes\\LaravelNotesFacade"
+      }
+    }
+  }
+}
