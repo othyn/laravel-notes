@@ -18,11 +18,11 @@ it('can publish the package config', function () {
         );
     }
 
-    /* @var LaravelNotesTestCase $this */
-    $this->assertFileDoesNotExist(
-        filename: $configFile
-    );
+    expect($configFile)
+        ->not
+        ->toBeFile();
 
+    /* @var LaravelNotesTestCase $this */
     $this->artisan(
         command: 'vendor:publish',
         parameters: [
@@ -31,9 +31,8 @@ it('can publish the package config', function () {
         ])
         ->assertSuccessful();
 
-    $this->assertFileExists(
-        filename: $configFile
-    );
+    expect($configFile)
+        ->toBeFile();
 });
 
 it('can publish the package migrations', function () {
@@ -47,11 +46,11 @@ it('can publish the package migrations', function () {
         );
     }
 
-    /* @var LaravelNotesTestCase $this */
-    $this->assertDirectoryDoesNotExist(
-        directory: $migrationsDirectory
-    );
+    expect($migrationsDirectory)
+        ->not
+        ->toBeDirectory();
 
+    /* @var LaravelNotesTestCase $this */
     $this->artisan(
         command: 'vendor:publish',
         parameters: [
@@ -60,11 +59,9 @@ it('can publish the package migrations', function () {
         ])
         ->assertSuccessful();
 
-    $this->assertDirectoryExists(
-        directory: $migrationsDirectory
-    );
+    expect($migrationsDirectory)
+        ->toBeDirectory();
 
-    $this->assertFileExists(
-        filename: "{$migrationsDirectory}/2023_01_09_191830_create_notes_table.php"
-    );
+    expect("{$migrationsDirectory}/2023_01_09_191830_create_notes_table.php")
+        ->toBeFile();
 });
