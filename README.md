@@ -1,7 +1,9 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/othyn/laravel-notes.svg?style=flat-square)](https://packagist.org/packages/othyn/laravel-notes)
-[![Total Downloads](https://img.shields.io/packagist/dt/othyn/laravel-notes.svg?style=flat-square)](https://packagist.org/packages/othyn/laravel-notes)
+[![Lint](https://github.com/othyn/laravel-notes/actions/workflows/00-lint.yml/badge.svg)](https://github.com/othyn/laravel-notes/actions/workflows/00-lint.yml)
+[![Tests](https://github.com/othyn/laravel-notes/actions/workflows/10-tests.yml/badge.svg)](https://github.com/othyn/laravel-notes/actions/workflows/10-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/othyn/laravel-notes.svg?style=flat)](https://packagist.org/packages/othyn/laravel-notes)
+[![Total Downloads](https://img.shields.io/packagist/dt/othyn/laravel-notes.svg?style=flat)](https://packagist.org/packages/othyn/laravel-notes)
 
 Create centralised notes against any model entity with ease. Finally, no longer a need for storing a `notes` field in
 every table!
