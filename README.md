@@ -3,9 +3,8 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/othyn/laravel-notes.svg?style=flat-square)](https://packagist.org/packages/othyn/laravel-notes)
 [![Total Downloads](https://img.shields.io/packagist/dt/othyn/laravel-notes.svg?style=flat-square)](https://packagist.org/packages/othyn/laravel-notes)
 
-Assign notes to any model entity with ease.
-
-Heavily inspired by https://github.com/owen-it/laravel-auditing.
+Create centralised notes against any model entity with ease. Finally, no longer a need for storing a `notes` field in
+every table!
 
 ## Installation
 
@@ -35,12 +34,23 @@ php artisan vendor:publish \
 // Usage description here
 ```
 
+### Linting
+
+```shell
+composer php-cs-fixer
+```
+
 ### Testing
 
 ```shell
 composer test
+
+# ... or with coverage
+composer test-coverage
 ```
 
-## Laravel Package Boilerplate
+## Credits
 
 This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
+
+Heavily inspired by https://github.com/owen-it/laravel-auditing.

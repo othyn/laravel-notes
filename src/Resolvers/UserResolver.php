@@ -19,13 +19,11 @@ class UserResolver implements \Othyn\LaravelNotes\Contracts\UserResolver
         $resolver = static::resolver();
 
         if ($resolver !== static::class
-            && is_subclass_of(object_or_class: $resolver, class: UserResolver::class)) {
-            return call_user_func(
-                callback: [
-                    $resolver,
-                    'resolve',
-                ]
-            );
+            && is_subclass_of(object_or_class: $resolver, class: \Othyn\LaravelNotes\Contracts\UserResolver::class)) {
+            return call_user_func(callback: [
+                $resolver,
+                'resolve',
+            ]);
         }
 
         $guards = config(

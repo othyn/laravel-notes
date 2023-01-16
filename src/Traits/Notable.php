@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Othyn\LaravelNotes\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Othyn\LaravelNotes\Contracts\Note;
 use Othyn\LaravelNotes\Resolvers\UserResolver;
 
 trait Notable
@@ -26,16 +27,48 @@ trait Notable
     /**
      * {@inheritDoc}
      */
-    public function note(string $text): \Othyn\LaravelNotes\Contracts\Note
+    public function latestNote(): ?Note
+    {
+        return $this->morphOne(
+            related: config(
+                key: 'laravel-notes.note',
+                default: \Othyn\LaravelNotes\Models\Note::class
+            ),
+            name: 'notable'
+        )
+            ->latestOfMany()
+            ->first();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function oldestNote(): ?Note
+    {
+        return $this->morphOne(
+            related: config(
+                key: 'laravel-notes.note',
+                default: \Othyn\LaravelNotes\Models\Note::class
+            ),
+            name: 'notable'
+        )
+            ->oldestOfMany()
+            ->first();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function note(string $contents): Note
     {
         $user = UserResolver::resolve();
 
         return $this
             ->notes()
             ->create(attributes: [
-                UserResolver::notesTypeField() => get_class($user),
-                UserResolver::notesIdField() => $user->getAuthIdentifier(),
-                'note' => $text,
+                UserResolver::notesIdField() => is_null($user) ? null : $user->getAuthIdentifier(),
+                UserResolver::notesTypeField() => is_null($user) ? null : get_class($user),
+                'contents' => $contents,
             ]);
     }
 }

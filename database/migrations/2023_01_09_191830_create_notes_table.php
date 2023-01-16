@@ -10,10 +10,8 @@ use Othyn\LaravelNotes\Resolvers\UserResolver;
 return new class() extends Migration {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::connection(
             name: config(
@@ -24,49 +22,35 @@ return new class() extends Migration {
                 key: 'laravel-notes.database.table'
             ),
             callback: function (Blueprint $table) {
-                $table->bigIncrements(
-                    column: 'id'
-                );
+                $table->id();
 
-                $table->string(
-                    column: UserResolver::notesTypeField()
-                )->nullable();
+                $table->unsignedBigInteger(column: UserResolver::notesIdField())->nullable();
+                $table->string(column: UserResolver::notesTypeField())->nullable();
 
-                $table->unsignedBigInteger(
-                    column: UserResolver::notesIdField()
-                )->nullable();
+                $table->morphs(name: 'notable');
 
-                $table->morphs(
-                    name: 'notable'
-                );
+                $table->text(column: 'contents');
 
-                $table->text(
-                    column: 'note'
-                );
-
+                $table->softDeletes();
                 $table->timestamps();
 
-                $table->index(
-                    columns: [
-                        UserResolver::notesTypeField(),
-                        UserResolver::notesIdField(),
-                    ]
-                );
+                $table->index(columns: [
+                    UserResolver::notesIdField(),
+                    UserResolver::notesTypeField(),
+                ]);
             });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::connection(
             name: config(
                 key: 'laravel-notes.database.connection'
             )
-        )->drop(
+        )->dropIfExists(
             table: config(
                 key: 'laravel-notes.database.table'
             ),

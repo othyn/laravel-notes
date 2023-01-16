@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace Othyn\LaravelNotes\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Foundation\Auth\User;
 
+/**
+ * @property User    $user
+ * @property Notable $notable
+ */
 interface Note
 {
     /**

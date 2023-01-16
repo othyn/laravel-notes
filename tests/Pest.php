@@ -2,7 +2,12 @@
 
 declare(strict_types=1);
 
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\File;
 use Othyn\LaravelNotes\Tests\LaravelNotesTestCase;
+use Othyn\LaravelNotes\Tests\Models\User;
+use PHPUnit\Framework\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +21,11 @@ use Othyn\LaravelNotes\Tests\LaravelNotesTestCase;
 */
 
 // uses(Tests\TestCase::class)->in('Feature');
-uses(LaravelNotesTestCase::class)->in(__DIR__);
+uses(LaravelNotesTestCase::class)
+    ->in(__DIR__);
+
+uses(RefreshDatabase::class);
+//    ->beforeEach(fn () => User::factory()->create());
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +38,19 @@ uses(LaravelNotesTestCase::class)->in(__DIR__);
 |
 */
 
-// expect()->extend('toBeOne', function () {
-//     return $this->toBe(1);
-// });
+expect()->extend('toPublish', function () {
+    test()
+        ->artisan(
+            command: 'vendor:publish',
+            parameters: [
+                '--provider' => 'Othyn\\LaravelNotes\\LaravelNotesServiceProvider',
+                '--tag' => $this->value,
+            ]
+        )
+        ->assertSuccessful();
+
+    return test();
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +63,24 @@ uses(LaravelNotesTestCase::class)->in(__DIR__);
 |
 */
 
-// function something()
-// {
-//     // ..
-// }
+/**
+ * Set the currently logged-in user for the application.
+ */
+function actingAs(Authenticatable $user, string $driver = null): TestCase
+{
+    return test()->actingAs($user, $driver);
+}
+
+/**
+ * Deletes a given file or directory at the given path if it exists.
+ */
+function resetPath(string $path): void
+{
+    if (File::exists(path: $path)) {
+        File::delete(paths: $path);
+    }
+
+    if (File::isDirectory(directory: $path)) {
+        File::deleteDirectory(directory: $path);
+    }
+}

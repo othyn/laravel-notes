@@ -32,7 +32,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Othyn\\LaravelNotes\\Tests\\": "tests"
+      "Othyn\\LaravelNotes\\Tests\\": "tests",
+      "Othyn\\LaravelNotes\\Tests\\Database\\Factories\\": "tests/database/factories/"
     }
   },
   "scripts": {
