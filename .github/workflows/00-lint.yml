@@ -1,0 +1,47 @@
+name: Lint
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: none
+          tools: composer:v2
+
+      - name: Install PHP dependencies
+        run: composer install
+
+      - name: Run PHP-CS-Fixer
+        run: composer php-cs-fixer
+        continue-on-error: true
+
+      - name: Don't Commit composer.json change
+        run: git checkout -- composer.json
+
+      - name: Commit any changes back to the repo
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "[GitHub Actions Bot: Linting]"
+          commit_author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
