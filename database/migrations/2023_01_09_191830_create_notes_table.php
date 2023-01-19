@@ -31,8 +31,8 @@ return new class() extends Migration {
 
                 $table->text(column: 'contents');
 
-                $table->softDeletes();
                 $table->timestamps();
+                $table->softDeletes();
 
                 $table->index(columns: [
                     UserResolver::notesIdField(),

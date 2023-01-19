@@ -235,7 +235,52 @@ $note = $fridge->notes()->find(7);
 $notes = $fridge->notes()->with('user')->get();
 ```
 
-There is IDE type hinting baked into the Contracts to assist with the above.
+This is what the default `Note` entity looks like, for easy property reference:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Othyn\LaravelNotes\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Othyn\LaravelNotes\Models\Note.
+ *
+ * @property int                             $id
+ * @property int                             $user_id
+ * @property int                             $user_type
+ * @property int                             $notable_id
+ * @property int                             $notable_type
+ * @property string                          $contents
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ *
+ * @mixin \Eloquent
+ */
+class Note extends Model implements \Othyn\LaravelNotes\Contracts\Note
+{
+    use SoftDeletes;
+    use \Othyn\LaravelNotes\Traits\Note;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+}
+```
+
+As you can see, there is IDE type hinting baked into the Contracts and default Model to assist with method and
+property discovery for all of the above.
 
 If you need to go beyond that and really turn things up to 11, lets touch on what the configuration can do for you.
 

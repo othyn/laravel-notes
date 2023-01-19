@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int                             $notable_id
  * @property int                             $notable_type
  * @property string                          $contents
- * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  *
  * @mixin \Eloquent
  */
@@ -32,8 +32,8 @@ class Note extends Model implements \Othyn\LaravelNotes\Contracts\Note
      */
     protected $guarded = [
         'id',
-        'deleted_at',
         'created_at',
         'updated_at',
+        'deleted_at',
     ];
 }
