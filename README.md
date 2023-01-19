@@ -12,7 +12,7 @@
         <a href="https://github.com/othyn/laravel-notes/actions/workflows/10-tests.yml">
             <img src="https://github.com/othyn/laravel-notes/actions/workflows/10-tests.yml/badge.svg" alt="tests action" />
         </a>
-        <a href="https://github.com/othyn/laravel-notes/actions/workflows/tests.yml">
+        <a href="https://github.com/othyn/laravel-notes/actions/workflows/10-tests.yml">
             <img src="https://img.shields.io/badge/Test Coverage-100%25-green" alt="coverage" />
         </a>
         <a href="https://packagist.org/packages/othyn/laravel-notes">
@@ -43,9 +43,9 @@
     <h4>
         <a href="#floppy_disk-install">Install Latest Version</a>
         <span> · </span>
-        <a href="https://github.com/othyn/laravel-notes/issues">Report Bug</a>
+        <a href="https://github.com/othyn/laravel-notes/issues/new?assignees=&labels=bug&template=bug.yml">Report Bug</a>
         <span> · </span>
-        <a href="https://github.com/othyn/laravel-notes/issues">Request Feature</a>
+        <a href="https://github.com/othyn/laravel-notes/issues/new?assignees=&labels=enhancement&template=enhancement.yml">Request Feature</a>
     </h4>
 </div>
 
@@ -315,7 +315,7 @@ That's about it, go make something cool and submit a PR!
 
 ## :warning: License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/othyn/laravel-notes/blob/main/LICENSE) for more
+Distributed under the MIT License. See [LICENSE](LICENSE) for more
 information.
 
 <!-- Acknowledgments -->
