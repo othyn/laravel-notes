@@ -3,7 +3,9 @@
   "description": "Assign notes to any model entity with ease.",
   "keywords": [
     "othyn",
-    "laravel-notes"
+    "laravel-notes",
+    "laravel",
+    "notes"
   ],
   "homepage": "https://github.com/othyn/laravel-notes",
   "license": "MIT",
