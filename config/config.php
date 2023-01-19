@@ -10,11 +10,11 @@ return [
     |
     | Define which entity should represent a Note.
     |
-    | Default: Othyn\LaravelNotes\Models\Note::class
+    | Default: \Othyn\LaravelNotes\Models\Note::class
     |
     */
 
-    'note' => Othyn\LaravelNotes\Models\Note::class,
+    'note' => \Othyn\LaravelNotes\Models\Note::class,
 
     /*
     |--------------------------------------------------------------------------
