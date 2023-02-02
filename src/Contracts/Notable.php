@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Othyn\LaravelNotes\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 
 /**
@@ -15,7 +14,7 @@ interface Notable
     /**
      * Notes relationship declaration for this notable entity.
      */
-    public function notes(): MorphMany;
+    public function notes(): mixed;
 
     /**
      * Latest note for this notable entity.

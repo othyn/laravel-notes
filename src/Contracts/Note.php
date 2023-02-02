@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Othyn\LaravelNotes\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User;
 
 /**
@@ -32,10 +31,10 @@ interface Note
     /**
      * User responsible for the note.
      */
-    public function user(): MorphTo;
+    public function user(): mixed;
 
     /**
      * Get the notable model responsible for this note.
      */
-    public function notable(): MorphTo;
+    public function notable(): mixed;
 }
